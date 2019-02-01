@@ -8,7 +8,7 @@
 math.randomseed(os.time())
 
 -- variables required at top
-version = "v1.1"
+version = "v1.2-dev"
 highscoreSave = "colorattack_highscore.txt"
 
 api_endpoint = "http://colorattack.vilhelmprytz.se/api/v2/highscore/"
@@ -262,6 +262,10 @@ powerups = {}
 amountPowerups = static.amountPowerups
 spawn_powerup_timer = static.spawn_powerup_time
 
+-- game variables
+game = {}
+game.isPaused = false
+
 -- other
 score = 0
 spawn_wait = 10
@@ -432,6 +436,11 @@ function love.draw()
     love.graphics.setColor(255, 255, 255)
   end
 
+  -- pause the game
+  if game.isPaused == true then
+    textRectangle("GAME PAUSED", height2)
+  end
+
   -- print FPS, print version
   love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), width-100, 1)
   love.graphics.print(version, width-35, 15)
@@ -473,12 +482,12 @@ function love.update(dt)
     player.newHighscore_done = true
   end
 
-  -- UPDATE FOR WHEN PLAYER IS NOT DEAD
-  -- UPDATE FOR WHEN PLAYER IS NOT DEAD
-  -- UPDATE FOR WHEN PLAYER IS NOT DEAD
-  -- UPDATE FOR WHEN PLAYER IS NOT DEAD
+  -- UPDATE FOR WHEN PLAYER IS NOT DEAD & GAME IS NOT PAUSED
+  -- UPDATE FOR WHEN PLAYER IS NOT DEAD & GAME IS NOT PAUSED
+  -- UPDATE FOR WHEN PLAYER IS NOT DEAD & GAME IS NOT PAUSED
+  -- UPDATE FOR WHEN PLAYER IS NOT DEAD & GAME IS NOT PAUSED
 
-  if player.dead == false then
+  if player.dead == false and game.isPaused == false then
     -- movement
     if love.keyboard.isDown("a") then
       if player.x < 400 then
@@ -758,7 +767,7 @@ function love.keypressed(key)
     end
 end
 
--- DEBUG TOGGLE
+-- FOR DEBUG TOGGLE AND PAUSING THE GAME
 function love.keyreleased(key)
    if key == "scrolllock" then
       if debug == false then
@@ -775,6 +784,14 @@ function love.keyreleased(key)
        else
          zombie_show_coordinates = false
        end
+     end
+   end
+
+   if key == "escape" then
+     if game.isPaused == false and player.dead == false then
+       game.isPaused = true
+     else
+       game.isPaused = false
      end
    end
 end
