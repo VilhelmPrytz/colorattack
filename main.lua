@@ -1,14 +1,12 @@
--- Zombie Game
--- copyright Vilhelm Prytz 2019
--- Do not modify
--- Copyright Vilhelm Prytz 2019
--- https://colorattack.vilhelmprytz.se - vilhelm@prytznet.se
+-- Color Attack
+-- (c) Vilhelm Prytz 2019 <vilhelm@prytznet.se>
+-- https://github.com/VilhelmPrytz/colorattack
 
 -- make sure it's random
 math.randomseed(os.time())
 
 -- variables required at top
-version = "v1.2-dev"
+version = "development"
 highscoreSave = "colorattack_highscore.txt"
 
 api_endpoint = "http://colorattack.vilhelmprytz.se/api/v2/highscore/"
