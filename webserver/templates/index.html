@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Color Attack by Vilhelm Prytz</title>
+  <style>
+  table, th, td {
+    border: 1px solid black;
+  }
+  th, td {
+    padding: 5px;
+    text-align: left;
+  }
+  </style>
+</head>
+<body>
+  <h1>Color Attack</h1>
+  <p>Latest version: {{ latest_version }}</p>
+  <h3>Controls</h3>
+  <p>WASD: Movement
+  <br>Arrow keys: Shoot bullets
+  <br>Left Shift: Sprint</p>
+  <h3>Downloads</h3>
+  {% for release in releases %}
+  <p>{{release}} - <a href="/downloads/ColorAttack_{{release}}.zip">Click here to download (Windows 64-bit)</a></p>
+  {% endfor %}
+  <p><b>Note</b>: The game may not run well on monitors with framerates above 60 FPS.</p>
+  <h3>Highscore Leaderboard for v1.1</h3>
+  <table>
+    <tr>
+      <td></td>
+      <td>Date</td>
+      <td>Score</td>
+      <td>Name</td>
+    </tr>
+    {% for entry in leaderboard_v2 %}
+    <tr>
+      <td>{{entry[3]}}.</td>
+      <td>{{entry[0]}}</td>
+      <td>{{entry[1]}}</td>
+      <td>{{entry[2]}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h3>Highscore Leaderboard for v1.0</h3>
+  <table>
+    <tr>
+      <td></td>
+      <td>Date</td>
+      <td>Score</td>
+    </tr>
+    {% for entry in leaderboard_v1 %}
+    <tr>
+      <td>{{entry[2]}}.</td>
+      <td>{{entry[0]}}</td>
+      <td>{{entry[1]}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
